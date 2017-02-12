@@ -11,7 +11,6 @@
 
 BOT_NAME = 'scrapy_anything'
 
-SPIDER_MODULES = ['scrapy_anything.spiders']
 MINIAPPSPIDER_MODULE = 'scrapy_anything.minapp'
 
 
@@ -19,7 +18,7 @@ MINIAPPSPIDER_MODULE = 'scrapy_anything.minapp'
 #USER_AGENT = 'scrapy_anything (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

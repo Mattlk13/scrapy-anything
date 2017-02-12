@@ -9,8 +9,8 @@ from scrapy.utils.project import get_project_settings
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from scrapy_anything.minapp.item_mapper import App, Image, Tag
-from scrapy_anything.minapp.items import MiniappItem
+from examples.minapp.item_mapper import App, Image, Tag
+from examples.minapp.items import MiniappItem
 
 
 class MiniappPipeline:
@@ -39,6 +39,7 @@ class MiniappPipeline:
             self.session.add(image)
         self.session.commit()
 
+
 class TagPipeline:
     def open_spider(self, spider):
         setting = get_project_settings()
@@ -58,3 +59,17 @@ class TagPipeline:
         tag = Tag(id=item['id'], name=item['name'])
         self.session.add(tag)
         self.session.commit()
+
+
+class PrintPipeline:
+    def process_item(self, item, spider):
+        print(item)
+
+
+class StripPipeline:
+    def process_item(self, item, spider):
+        # 遍历item的属性，如果为空则赋默认值
+        for key, value in item.items():
+            if isinstance(value, str):
+                item[key] = value.strip()
+        return item
